@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>닷코 - 발주사</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/index.css">
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="lib/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+
+            /* .header search */
+            $('.menu_search img').click(function () {
+
+                /*   $('.search_box').css({
+                      'width' : '220px',
+                      'opacity' : '1'
+                  }) */
+                $('.search_box').toggleClass('on')
+            })
+
+            /* main_visual swiper */
+            var swiper = new Swiper(".mySwiper", {
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+
+            /* 🍔 */
+            let menuIconWrap = $('.hamburger_icon');
+            let menuIcon = $('.hamburger_icon span');
+            menuIconWrap.click(function () {
+                $(this).toggleClass('on');
+            })/* menuIconWrap.click() */
+
+            $('a').click(function () {
+                return false
+            })/* .a.click() */
+
+            let menuWidth = $('.menu ul li a').outerWidth()
+
+            $('.bar').css({
+                'width': menuWidth,
+                'left': '20px'
+            })
+
+            $('.menu ul li a').mouseenter(function () {
+
+                let move = $(this).position().left
+                let thisWidth = $(this).outerWidth()
+
+                console.log(move)
+                console.log(thisWidth)
+                $('.bar').stop().animate({
+                    'left': move,
+                    'width': thisWidth
+                })
+
+                //.menu_open을 클릭을 했을 때 실행
+                //nav가 slideDown()
+
+            })//.menu ul li.mouseenter()
+
+            $('.hamburger_icon').click(function () {
+
+                $('.nav').slideToggle().css({
+                    'display': 'block'
+                })
+            })/* .hamburger_icon.click() */
+
+            console.log($('header .inner').offset().top)
+            let headerTop = ($('header .inner').offset().top)
+            let cont01Top = ($('.cont01').offset().top)
+            console.log(cont01Top)
+            /* 헤더 픽스*/
+            $(window).scroll(function () {
+                /* if (headerTop < $(window).scrollTop()) {
+                    $('header .inner').addClass('on')
+                    
+                } else {
+                    $('header .inner').removeClass('on')
+                }
+                 */
+                if (cont01Top < $(window).scrollTop()) {
+                    $('.top').fadeIn().css({
+                        'display': 'block'
+                    })
+                } else {
+                    $('.top').fadeOut()
+                }
+            })//window.scroll()
+
+
+            /* 버튼 누르면 헤더로 가기 */
+            $('.top').click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 700)
+            })//.top.click()
+
+        })//jquery end
+    </script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <div class="header-top">
+                <div class="logo">
+                    <a href="#">
+                        <img src="img/logo-datco.png" alt="">
+                    </a>
+                </div>
+                <div class="login-box">
+                    <p><a href="./index_client.html">로그인</a></p>
+                    <p><a href="./index_suppliers.html">회원가입</a></p>
+                    <p><a href="#">문의하기</a></p>
+                </div>
+            </div><!-- .header-top end -->
+        </div>
+        <div class="inner">
+            <div>
+                <div class="hamburger_icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div><!-- .hamburger_icon end -->
+                <div class="menu">
+                    <ul>
+                        <li><a href="#">닷코소개</a></li>
+                        <li><a href="#">닷코소식</a></li>
+                        <li><a href="#">특가주문</a></li>
+                        <li><a href="#">진행현황</a></li>
+                        <li><a href="#">견적신청</a></li>
+                    </ul>
+                    <div class="bar">
+                        <span>메뉴바</span>
+                    </div><!-- .bar end -->
+                </div><!-- .menu end -->
+            </div>
+
+            <div class="nav_icon">
+                <div class="search_box">
+                    <input type="text" placeholder="">
+                    <button>검색</button>
+                </div><!-- .search_box end -->
+
+                <div class="menu_search">
+                    <a href="#">
+                        <img src="img/ico_head_search_000.svg" alt="">
+                    </a>
+                </div><!-- .menu_search end -->
+
+                <div class="menu_user">
+                    <a href="#">
+                        <img src="img/ico_head_user_000.svg" alt="">
+                    </a>
+                </div><!-- .menu_user end -->
+                <div class="menu_user">
+                    <a href="#">
+                        <img src="img/free-icon-notification-bell-outline-interface-symbol-54810.png" alt="">
+                    </a>
+                </div><!-- .menu_user end -->
+
+            </div><!-- .nav_icon end -->
+        </div><!-- .inner end -->
+
+        <div class="nav">
+            <div class="menu_close">
+                <a href="#"><img src="img/close.png" alt=""></a>
+            </div><!-- .menu_close end -->
+            <div class="menu_box">
+                <div class="nav_wrap">
+                    <div class="categorycont">
+                        <ul class="categorylist">
+                            <li>
+                                <ul class="list_sub list1">
+                                    <li><a href="#">회사 소개</a></li>
+                                    <li><a href="#">이용 안내</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                </ul><!-- .list_sub end -->
+                            </li>
+                            <li>
+                                <ul class="list_sub list2">
+                                    <li><a href="#">커뮤니티</a></li>
+                                    <li><a href="#">뉴스 소식</a></li>
+                                    <li><a href="#">금형 관련 지식</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="list_sub list3">
+                                    <li><a href="#">수정 중</a></li>
+                                    <li><a href="#">뉴스 소식</a></li>
+                                    <li><a href="#">금형 관련 지식</a></li>
+                                </ul><!-- .list_sub end -->
+                            </li>
+
+                            <!-- <li>
+                                <ul class="list_sub list3">
+                                    <li><a href="#">보도자료</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="list_sub list4">
+                                    <li><a href="#">문의하기</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                </ul>
+                            </li> -->
+
+                        </ul><!-- .categorylist end -->
+                    </div><!-- .categorycont end -->
+
+                    <div class="boardcont">
+                        <div class="boardlist">
+                            <span><a href="#">커뮤니티</a></span>
+                            <ul>
+                                <li><a href="#">공지사항</a></li>
+                                <li><a href="#">Q&A</a></li>
+                                <li><a href="#">자주묻는 질문</a></li>
+                            </ul>
+                        </div>
+                    </div><!-- .boardcont end -->
+                    
+                </div><!-- .nav_wrap -->
+            </div><!-- .menu_box end -->
+        </div><!-- .nav end -->
+
+    </header>
+
+    <section class="main_visual">
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <img src="img/main-4.jpg" alt="">
+                        <div class="text-overlay">
+                            <h2>금형제작의 스마트 솔루션</h2>
+                            <span>금형 제조 업체와 고객을 연결해 주는 혁신적인 온라인 플랫폼</span>
+                            <!-- <p>view more</p> -->
+                        </div><!-- text-overlay end -->
+                    </div>
+                </div><!-- swiper-slide end -->
+
+
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <img src="img/main-1.jpg" alt="">
+                        <div class="text-overlay">
+                            <h2>One-Stop-Solution</h2>
+                            <span>닷코는 금형의 연구개발 및 최적의 서비스 전과정에 대한 차별화된 통합 플랫폼
+                            </span>
+                            <!-- <p>view more</p> -->
+                        </div><!-- text-overlay end -->
+                    </div>
+                </div><!-- swiper-slide end -->
+
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <img src="img/main-2.jpg" alt="">
+                        <div class="text-overlay">
+                            <h2>금형산업의 가치를 더하다</h2>
+                            <span>전문적인 지식과 경험 / 노하우를 적용한 온라인 플랫폼
+                            </span>
+                            <!-- <p>view more</p> -->
+                        </div><!-- text-overlay end -->
+                    </div>
+                </div><!-- swiper-slide end -->
+
+            </div><!-- swiper-wrapper end -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </section><!-- .main_visual end -->
+
+    <section class="section01">
+        <div class="container">
+            <div class="img-box">
+                <img src="./img/buliding forrest square.jpg" alt="">
+            </div>
+            <div class="letter-box">
+                <hr>
+                <h2>Mission</h2>
+                </br>
+                </br>
+                <p>
+                    <span>(주)닷코</span>는 자동차 부품과 가전용 부품등을 제조, 생산할 수 있는 프레스 금형을
+                    전문적으로 개발, 제작하는 솔루션을 구현하는데 <span>최적의 플랫폼</span>을 제공합니다.</br>
+                    </br>
+                    AI, 빅데이터 등 융복합 시대가 가까이 함에 있음에도
+                    혜택이나 활용할 기회를 포기하는 현실에서 자사 솔루션의 우수성, 신뢰성, 접근성 등
+                    기존의 제조업체와는 다르게 이용자에게 <span>플랫폼의 활용 주권</span>을 부여할 수 있는 솔루션을 제공합니다.
+                </p>
+                <button>닷코 소개 바로가기</button>
+            </div class="letter-box">
+        </div>
+    </section>
+    <section class="section02">
+        <div class="container">
+
+        </div>
+    </section>
+
+    <section class="section03">
+        <div>
+            <!-- <h1>Binggrae with you</h1> -->
+            <p>
+                닷코는 기존 시스템의 복잡함와 불편함을 개선했습니다.<br>
+                금형제작에 최적화된 닷코WEB을 통해 금형 제작을 간편하게 의뢰하세요.<br>
+                닷코WEB을 이용하면 온라인에서 금형 제작의 진행 상황을 실시간으로 쉽게 확인할 수 있습니다.<br>
+                지금 바로 닷코를 이용해보세요!
+            </p>
+            <span><a href="#">견적의뢰 바로가기</a></span>
+        </div>
+    </section><!-- .section03 end -->
+
+    <section class="section04">
+        <div class="container">
+
+        </div>
+    </section>
+
+    <section class="section05">
+        <div class="text_slide">
+            <div class="partner">
+                <img src="./img/파트너1.png" alt="">
+                <img src="./img/파트너2.png" alt="">
+                <img src="./img/파트너3.png" alt="">
+                <img src="./img/파트너4.png" alt="">
+                <img src="./img/파트너5.png" alt="">
+                <img src="./img/파트너6.png" alt="">
+                <img src="./img/파트너8.png" alt="">
+                <img src="./img/파트너9.png" alt="">
+                <img src="./img/파트너1.png" alt="">
+                <img src="./img/파트너2.png" alt="">
+                <img src="./img/파트너3.png" alt="">
+                <img src="./img/파트너4.png" alt="">
+                <img src="./img/파트너5.png" alt="">
+                <img src="./img/파트너6.png" alt="">
+                <img src="./img/파트너8.png" alt="">
+                <img src="./img/파트너9.png" alt="">
+            </div>
+        </div><!-- .text_slide end -->
+    </section><!-- client end -->
+
+    <section class="section06">
+        <div class="container">
+            <h1>오시는 길</h1>
+            <p><span>Address.</span>55, Surim-ro, Geumjeong-gu, Busan, Republic of Korea </p>
+            <img src="./img/닷코 지도.jpg" alt="">
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer_left">
+            <img src="img/logo-datco.png" alt="">
+
+            <div>
+                <h4>Company Info</h4>
+                <span>(주)닷코</span>
+                <span>대표 : 임현호</span>
+                <span>사업자 등록번호 : 482-87-02860</span>
+                <br>
+                <span>통신판매업번호 제 2018-다산-0172</span>
+                <br>
+                <span>주소 : 부산광역시 금정구 수림로 55 정우빌딩 2층 (장전동) (우 : 46282)</span>
+                <br>
+                <span>이메일 : datco@datco.com</span>
+            </div>
+        </div><!-- .footer_left end -->
+
+        <div class="footer_right">
+            <div class="footerright_left">
+                <h3>Coustomer Service</h3>
+                <h1>070-8801-4828</h1>
+                <p>상담시간 08:00~17:00<br>
+                    월~금(공휴일 제외)</p>
+            </div><!-- .footerright_left end -->
+
+            <div class="footerright_right">
+                <div class="list">
+                    <span>회사소개</span>
+                    <span>이용약관</span>
+                    <span>개인정보처리방침</span>
+                    <span>이용안내</span>
+                </div><!-- .list end -->
+            </div><!-- .footerright_right end -->
+        </div><!-- .footer_right end -->
+    </footer>
+
+</body>
+
+</html>
